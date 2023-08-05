@@ -1,0 +1,8 @@
+# Fixtures file use by tests
+
+- model: common.FixtureTestModel
+  pk: 1
+  fields:
+    name: Fixture
+    created: 2023-01-01T00:00:00
+    modified: 2023-01-01T00:00:00
