@@ -113,3 +113,21 @@ Those dependencies include:
 - Docker images ([docker-compose.yml](docker-compose.yml)
   and [Dockerfile](Dockerfile))
 - projects under `uses` keyword in [.github/workflows/release.yml](.github/workflows/release.yml)
+
+## Making changes
+
+There is a useful script called [create_project.sh](scripts/create_project.sh)
+that does all the steps from the [Create a new Django project](#create-a-new-django-project)
+section, and optionally also runs the steps from [Start the project](#start-the-project)
+section.
+
+When making changes to this project, it's necessary to check
+if a new Django project can be created using this template.
+
+Instead of doing all the steps from [Create a new Django project](#create-a-new-django-project)
+and [Start the project](#start-the-project) sections, you can
+use [create_project.sh](scripts/create_project.sh) to do all those
+steps for you.
+
+Check the comments on the top of the script file to see what are the
+necessary requirements and steps for running the script.
