@@ -6,7 +6,7 @@ new Django project from this template:
 1. Create a new directory for the project:
 
    `mkdir my_project`
-    (replace `my_project` with the name of your project)
+   (replace `my_project` with the name of your project)
 
 2. and go to that directory:
 
@@ -26,7 +26,7 @@ new Django project from this template:
 
 6. Create new Django project:
 
-   `django-admin startproject --template https://github.com/roknicmilos/djangotainer/archive/main.zip my_project .`
+   `django-admin startproject --template https://github.com/roknicmilos/djangotainer/archive/main.zip --name=pyproject.toml my_project .`
 
 7. Install default requirements:
 
@@ -45,6 +45,7 @@ new Django project from this template:
 ### users
 
 App `users`:
+
 - comes with custom `User` model
 - deactivates model admin for `Group` model
 
