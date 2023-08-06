@@ -11,19 +11,19 @@ jobs:
     name: 'Create a new release from a tag'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.5.3
         with:
           ref: ${{ github.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Changelog
         id: github_release
-        uses: mikepenz/release-changelog-builder-action@v3
+        uses: mikepenz/release-changelog-builder-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          configuration: '.github/workflows/changelog-configuration.json'
+          configuration: 'changelog-configuration.json'
       - name: Create Release
-        uses: mikepenz/action-gh-release@v0.2.0-a03
+        uses: mikepenz/action-gh-release@v1
         with:
           body: ${{ steps.github_release.outputs.changelog }}
         env:
