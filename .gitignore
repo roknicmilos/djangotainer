@@ -20,3 +20,6 @@ coverage_html
 venv
 *.env
 !example.env
+
+# SQLite database fiels
+*sqlite3
