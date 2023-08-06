@@ -2,8 +2,6 @@
 
 ## Quickstart:
 
----
-
 ### Create a new Django project
 
 Below are the steps for creating a new Django project using the
