@@ -1,64 +1,115 @@
 # djangotainer
 
-Steps for creating and setting up a
-new Django project from this template:
+## Quickstart:
+
+---
+
+### Create a new Django project
+
+Below are the steps for creating a new Django project using the
+[djangotainer](https://github.com/roknicmilos/djangotainer) project
+template.
 
 1. Create a new directory for the project:
 
    `mkdir my_project`
    (replace `my_project` with the name of your project)
 
-2. and go to that directory:
+2. Create Python virtual environment [venv](https://docs.python.org/3/library/venv.html) in the project directory:
 
-   `cd my_project`
+   `python3 -m venv my_project/venv`
 
-3. Create virtual environment:
+3. Activate Python virtual environment:
 
-   `python3 -m venv venv`
+   `source my_project/venv/bin/activate`
 
-4. Activate virtual environment:
-
-   `source venv/bin/activate`
-
-5. Install Django:
+4. Install Django:
 
    `pip install django`
 
-6. Create new Django project:
+5. Create new Django project from "djangotainer" project template:
 
-   `django-admin startproject --template https://github.com/roknicmilos/djangotainer/archive/main.zip --name=pyproject.toml my_project .`
+   ```shell
+    django-admin startproject --template djangotainer \
+    --name=pyproject.toml,docker-compose.yml,example.env \
+    my_project ./my_project
+   ```
 
-7. Install default requirements:
+6. Deactivate and remove Python virtual environment:
 
-   `pip install -r requirements.txt`
+   `deactivate && rm -rf my_project/venv`
 
-8. Run migrations:
+### Start the project:
 
-   `python manage.py migrate`
+If you created a Django project by following the steps from the
+[Create a new Django project](#create-a-new-django-project) section,
+you should now be able to start that Django project by following the
+next steps:
 
-9. Start development server:
+1. Move to newly created Djagno project:
 
-   `python manage.py runserver`
+   `cd my_project`
 
-## Preinstalled apps
+2. Create `.env` using `example.com`:
 
-### users
+   `cp example.com .env`
 
-App `users`:
+3. (Optional) change the values of environment variables in `.env` file
+
+4. Start the containers:
+
+   `docker compose up -d`
+
+## Preinstalled Django apps
+
+This Django project template comes with two custom apps
+(`users` and `common`).
+
+You can modify, extend or remove these apps if you want,
+but note that they come with some minimal boilerplate code
+that is quite common across majority of Django projects.
+
+`users` app:
 
 - comes with custom `User` model
+  - Django documentation [highly recommends setting up a
+    custom user model](https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project)
 - deactivates model admin for `Group` model
+  - to simplify the Django Admin interface by hiding `Group`
+    model that is not that often used in Django projects
 
-### common
-
-App `common` comes with:
+`common` app comes with:
 
 - models: `BaseModel` and `SingletonModel`
+  - comes with `created` and `modified` fields, and `update` method
 - management command: `load_data`
-- custom base model admin classes (mixins)
+  - an extension of `loaddata` management command that
+    already comes with standard Django project
+  - this extension allows defining `FIXTURES` collection
+    (`list` or `tuple`) in project `settings` that will be used to
+    load the fixtures in a specific defined by that collection
+- custom model admin class (mixin)
+  - easily separate fields (and fieldsets) for "add" and "change"
+    model admin form
+  - automatically adds readonly `ID` field that will be displayed at
+    the top of the model admin form
 
 ## Default packages
 
-These packages are defined in requirements.txt, and
-they should be installed when setting up a project
-using this Django project template.
+When you create a new Django project using this project template,
+some Python packages will be automatically installed when Docker
+image for the Django project is built.
+
+You can find these packages in [requirements](requirements) directory.
+
+## Dependencies
+
+Make sure all dependencies are up-to-date in case this repository
+is not.
+
+Those dependencies include:
+
+- packages in requirements
+- Docker images ([docker-compose.yml](docker-compose.yml)
+  and [Dockerfile](Dockerfile))
+- projects under `uses` keyword in [.github/workflows/release.yml](.github/workflows/release.yml)

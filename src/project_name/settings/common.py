@@ -1,6 +1,6 @@
-import os
-from os.path import abspath, basename, dirname, join, normpath
 import sys
+from decouple import config
+from os.path import abspath, basename, dirname, join, normpath
 
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 
@@ -22,20 +22,13 @@ PROJECT_TEMPLATES = [
 
 sys.path.append(normpath(join(PROJECT_ROOT, 'apps')))
 
-DEFAULT_APPS = [
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Third party apps:
-    'django_extensions',
-
-    # Custom apps:
-    'apps.common',
-    'apps.users',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +65,7 @@ USE_I18N = False
 
 USE_TZ = False
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'secret-key')  # TODO
+SECRET_KEY = config('SECRET_KEY', default='secret-key')  # TODO
 
 ADMINS = (
     ('your name', 'your_name@example.com'),  # TODO (emails should not be sent)
@@ -88,6 +81,19 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
-DEBUG = False
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 AUTH_USER_MODEL = "users.User"
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USERNAME'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOSTNAME', default='postgres'),
+        'PORT': config('DB_PORT', default=5432, cast=int),
+    }
+}
+
+ALLOWED_HOSTS = ['*']
