@@ -1,7 +1,7 @@
 # specific .gitignore for this directory
 
 # ignore everything
-*
+media
 
 # except the explaining README
 !README
