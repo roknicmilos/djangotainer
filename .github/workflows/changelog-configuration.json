@@ -1,0 +1,25 @@
+{
+  "pr_template": "- ${{TITLE}} #${{NUMBER}}",
+  "categories": [
+    {
+      "title": "## ✨ Features",
+      "labels": [
+        "feature"
+      ]
+    },
+    {
+      "title": "## 🛠 Improvements",
+      "labels": [
+        "improvement"
+      ]
+    },
+    {
+      "title": "## 🐛 Bug Fixes",
+      "labels": [
+        "bugfix"
+      ]
+    }
+  ],
+  "ignore_labels": [],
+  "template": "${{CHANGELOG}}\n\n\n## ❓ Uncategorized\n\n${{UNCATEGORIZED}}\n"
+}
