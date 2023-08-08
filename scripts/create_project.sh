@@ -18,14 +18,14 @@ START_ARG="start"
 BUILD_ARG="--build"
 
 create_project() {
-  printc "Creating directory \"djangotainer_example\" \n" "info"
-  mkdir djangotainer_example
+  printc "Creating directory \"test_djangotainer\" \n" "info"
+  mkdir test_djangotainer
 
   printc "Creating Python virtual environment (venv) \n" "info"
-  python3 -m venv djangotainer_example/venv
+  python3 -m venv test_djangotainer/venv
 
   printc "Activating Python virtual environment (venv) \n" "info"
-  source djangotainer_example/venv/bin/activate
+  source test_djangotainer/venv/bin/activate
 
   printc "Installing Django \n" "info"
   pip install django
@@ -33,13 +33,13 @@ create_project() {
   printc "Creating new Django project from \"djangotainer\" template \n" "info"
   django-admin startproject --template djangotainer \
     --name=pyproject.toml,docker-compose.yml,example.env \
-    djangotainer_example ./djangotainer_example
+    test_djangotainer ./test_djangotainer
 
   printc "Deactivating Python virtual environment (venv) \n" "info"
   deactivate
 
   printc "Removing Python virtual environment directory (venv) \n" "info"
-  rm -rf djangotainer_example/venv
+  rm -rf test_djangotainer/venv
 }
 
 handle_second_arg() {
@@ -56,7 +56,7 @@ handle_second_arg() {
 
 start_project() {
   printc "Preparing environment variables \n" "info"
-  cd djangotainer_example
+  cd test_djangotainer
   cp example.env .env
 
   if [ -n "$2" ]; then
