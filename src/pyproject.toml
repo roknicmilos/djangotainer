@@ -1,3 +1,3 @@
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "{{ project_name }}.settings.development"
+DJANGO_SETTINGS_MODULE = "{{ project_name }}.settings"
 addopts = "--reuse-db"
