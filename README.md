@@ -74,6 +74,33 @@ next steps:
 
    `docker compose up -d`
 
+## entrypoint.sh
+
+There is `entrypoint.sh` scripts in `django` container with multiple
+options.
+
+Run the script:
+
+    `docker compose run --rm django sh /app/scripts/entrypoint.sh [option]`
+
+Available options:
+
+- ### `start`
+
+    First, it connects the Django app to the database, and then
+    it sets up necessary things for the Django app (static files,
+    migrations staff users, etc.).
+    Finally, it starts the web server.
+
+- ### `test`
+
+    It runs tests with [Pytest](https://docs.pytest.org/)
+    and [Coverage](https://coverage.readthedocs.io/).
+    Tests will fail if specified coverage percentage is not
+    satisfied.
+    Tests coverage percentage is defined with environment
+    variable `TEST_COVERAGE_PERCENTAGE` and it defaults to `100`.
+
 ## Preinstalled Django apps
 
 This Django project template comes with two custom apps
