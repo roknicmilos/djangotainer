@@ -32,6 +32,8 @@ run_server() {
 }
 
 START_ARG="start"
+TEST_ARG="test"
+TEST_COVERAGE_PERCENTAGE=${TEST_COVERAGE_PERCENTAGE:-100}
 
 #########################################################################
 # START: execution ######################################################
@@ -40,6 +42,9 @@ if [ "$1" = "$START_ARG" ]; then
   wait_for_postgres
   init_django_project
   run_server
+elif [ "$1" = "$TEST_ARG" ]; then
+  printc "Running tests (pytest) with expected $TEST_COVERAGE_PERCENTAGE% coverage...\n" "info"
+  pytest --cov --cov-report term:skip-covered --cov-fail-under="$TEST_COVERAGE_PERCENTAGE" -n auto
 else
   printc "Unknown argument: \"$1\" \n" "danger"
   printc "Available first arguments: \"$START_ARG\" \n" "info"

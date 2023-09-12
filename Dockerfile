@@ -35,6 +35,6 @@ RUN pip install --no-cache-dir -r /app/requirements/production.txt
 ### Development image ###
 #########################
 
-FROM base AS production
+FROM base AS development
 
 RUN pip install --no-cache-dir -r /app/requirements/development.txt
