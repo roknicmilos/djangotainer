@@ -81,7 +81,7 @@ options.
 
 Run the script:
 
-    `docker compose run --rm django sh /app/scripts/entrypoint.sh [option]`
+    docker compose run --rm django sh /app/scripts/entrypoint.sh [option]
 
 Available options:
 

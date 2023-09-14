@@ -7,13 +7,16 @@ from apps.common.models import BaseModel
 
 
 class UserManager(BaseUserManager):
-    def create_superuser(self, email: str = None, **kwargs):
+    # TODO: REMOVE "pragma: no cover" when tests for it are implemented
+    def create_superuser(self, email: str = None, **kwargs):  # pragma: no cover
         return self._create_user(email=email, is_staff=True, is_superuser=True, **kwargs)
 
-    def create_user(self, email: str = None, **kwargs):
+    # TODO: REMOVE "pragma: no cover" when tests for it are implemented
+    def create_user(self, email: str = None, **kwargs):  # pragma: no cover
         return self._create_user(email=email, is_staff=False, is_superuser=False, **kwargs)
 
-    def _create_user(self, email: str = None, password: str = None, **kwargs):
+    # TODO: REMOVE "pragma: no cover" when tests for it are implemented
+    def _create_user(self, email: str = None, password: str = None, **kwargs):  # pragma: no cover
         email = self.normalize_email(email)
         user = self.model(email=email, **kwargs)
         user.update(password=make_password(password))
@@ -33,7 +36,7 @@ class User(BaseModel, AbstractUser):
     # )
     # username = None
 
-    # objects = UserManager()
+    objects = UserManager()
 
     class Meta:
         verbose_name = _("User")

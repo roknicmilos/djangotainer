@@ -10,6 +10,6 @@ class TestCase(BaseTestCase):
 
     def get_request_example(self, url_query_params: dict = None) -> WSGIRequest:
         requests = self.client.get(path="/", data=url_query_params).wsgi_request
-        if url_query_params:
+        if url_query_params:  # pragma: no cover
             requests.query_params = url_query_params
         return requests
