@@ -1,5 +1,7 @@
 import sys
+from copy import deepcopy
 from decouple import config
+from django.utils.log import DEFAULT_LOGGING
 from os.path import abspath, basename, dirname, join, normpath
 
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
@@ -67,12 +69,6 @@ USE_TZ = False
 
 SECRET_KEY = config('SECRET_KEY', default='secret-key')  # TODO
 
-ADMINS = (
-    ('your name', 'your_name@example.com'),  # TODO (emails should not be sent)
-)
-
-MANAGERS = ADMINS
-
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 ROOT_URLCONF = '%s.urls' % SITE_NAME
@@ -97,3 +93,9 @@ DATABASES = {
 }
 
 ALLOWED_HOSTS = ['*']
+
+# Disable error emails:
+#   - based on: https://lincolnloop.com/insights/disabling-error-emails-django/
+logging_dict = deepcopy(DEFAULT_LOGGING)
+logging_dict['loggers']['django']['handlers'] = ['console']
+LOGGING = logging_dict
