@@ -1,5 +1,3 @@
-from unittest import skip
-
 import pytest
 from django.db.utils import IntegrityError
 from django.test import TransactionTestCase
@@ -8,11 +6,7 @@ from apps.users.models import User
 from apps.common.tests import TestCase
 
 
-@skip('TODO: "email" field has to be implemented')
-class TestUser(TestCase, TransactionTestCase):  # pragma: no cover
-    def tearDown(self) -> None:
-        super().tearDown()
-        User.objects.all().delete()
+class TestUser(TestCase, TransactionTestCase):
 
     def test_should_create_user(self):
         kwargs = {
@@ -51,7 +45,7 @@ class TestUser(TestCase, TransactionTestCase):  # pragma: no cover
 
     def test_email_case_insensitive_unique(self):
         User.objects.create(email="Hacker@example.com")
-        error_message = 'duplicate key value violates unique constraint "users_user_email_key"'
+        error_message = 'duplicate key value violates unique constraint'
         with pytest.raises(IntegrityError, match=error_message):
             User.objects.create(email="hacker@example.com")
 
