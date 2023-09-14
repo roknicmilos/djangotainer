@@ -40,6 +40,10 @@ create_project() {
 
   printc "Removing Python virtual environment directory (venv) \n" "info"
   rm -rf test_djangotainer/venv
+
+  printc "Preparing environment variables \n" "info"
+  cd test_djangotainer
+  cp example.env .env
 }
 
 handle_second_arg() {
@@ -55,10 +59,6 @@ handle_second_arg() {
 }
 
 start_project() {
-  printc "Preparing environment variables \n" "info"
-  cd test_djangotainer
-  cp example.env .env
-
   if [ -n "$2" ]; then
     handle_second_arg "$@"
   fi
