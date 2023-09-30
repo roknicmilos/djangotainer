@@ -1,20 +1,24 @@
 # djangotainer
 
+---
+
 Table of Contents
 =================
 
 * [Quickstart](#quickstart)
-  * [Create a new Django project](#create-a-new-django-project)
-  * [Start the project](#start-the-project)
+    * [Create a new Django project](#create-a-new-django-project)
+    * [Start the project](#start-the-project)
+* [entrypoint.sh](#entrypointsh)
 * [Preinstalled Django apps](#preinstalled-django-apps)
 * [Default packages](#default-packages)
 * [Dependencies](#dependencies)
 * [Tests](#tests)
-  * [Run tests](#run-tests)
-  * [Run tests with coverage](#run-tests-with-coverage)
-  * [Generate tests coverage report](#generate-tests-coverage-report)
+    * [Run tests](#run-tests)
+    * [Run tests with coverage](#run-tests-with-coverage)
+    * [Generate tests coverage report](#generate-tests-coverage-report)
 * [Making changes](#making-changes)
 
+___
 
 ## Quickstart
 
@@ -87,19 +91,19 @@ Available options:
 
 - ### `start`
 
-    First, it connects the Django app to the database, and then
-    it sets up necessary things for the Django app (static files,
-    migrations staff users, etc.).
-    Finally, it starts the web server.
+  First, it connects the Django app to the database, and then
+  it sets up necessary things for the Django app (static files,
+  migrations, staff users, etc.).
+  Finally, it starts the web server.
 
 - ### `test`
 
-    It runs tests with [Pytest](https://docs.pytest.org/)
-    and [Coverage](https://coverage.readthedocs.io/).
-    Tests will fail if specified coverage percentage is not
-    satisfied.
-    Tests coverage percentage is defined with environment
-    variable `TEST_COVERAGE_PERCENTAGE` and it defaults to `100`.
+  It runs tests with [Pytest](https://docs.pytest.org/)
+  and [Coverage](https://coverage.readthedocs.io/).
+  Tests will fail if specified coverage percentage is not
+  satisfied.
+  That coverage percentage is defined with environment
+  variable `TEST_COVERAGE_PERCENTAGE` and it defaults to `100`.
 
 ## Preinstalled Django apps
 
@@ -113,27 +117,27 @@ that is quite common across majority of Django projects.
 `users` app:
 
 - comes with custom `User` model
-  - Django documentation [highly recommends setting up a
-    custom user model](https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project)
+    - Django documentation [highly recommends setting up a
+      custom user model](https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project)
 - deactivates model admin for `Group` model
-  - to simplify the Django Admin interface by hiding `Group`
-    model that is not that often used in Django projects
+    - to simplify the Django Admin interface by hiding `Group`
+      model that is not that often used in Django projects
 
 `common` app comes with:
 
 - models: `BaseModel` and `SingletonModel`
-  - comes with `created` and `modified` fields, and `update` method
+    - comes with `created` and `modified` fields, and `update` method
 - management command: `load_data`
-  - an extension of `loaddata` management command that
-    already comes with standard Django project
-  - this extension allows defining `FIXTURES` collection
-    (`list` or `tuple`) in project `settings` that will be used to
-    load the fixtures in a specific defined by that collection
+    - an extension of `loaddata` management command that
+      already comes with standard Django project
+    - this extension allows defining `FIXTURES` collection
+      (`list` or `tuple`) in project `settings` that will be used to
+      load the fixtures in a specific defined by that collection
 - custom model admin class (mixin)
-  - easily separate fields (and fieldsets) for "add" and "change"
-    model admin form
-  - automatically adds readonly `ID` field that will be displayed at
-    the top of the model admin form
+    - easily separate fields (and fieldsets) for "add" and "change"
+      model admin form
+    - automatically adds readonly `ID` field that will be displayed at
+      the top of the model admin form
 
 ## Default packages
 
