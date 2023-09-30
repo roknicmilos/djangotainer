@@ -6,9 +6,8 @@
 #   - venv (Python module)
 
 # Steps:
-#   1. Go to parent directory of "djangotainer" project
-#   2. Make this script executable: `chmod +x djangotainer/scripts/create_project.sh`
-#   3. Run the script: `djangotainer/scripts/create_project.sh [start] [--build]`
+#   1. Make this script executable: `chmod +x djangotainer/scripts/create_project.sh`
+#   2. Run the script: `djangotainer/scripts/create_project.sh [start] [--build]`
 
 set -e
 
@@ -31,9 +30,10 @@ create_project() {
   pip install django
 
   printc "Creating new Django project from \"djangotainer\" template \n" "info"
-  django-admin startproject --template djangotainer \
-    --name=pyproject.toml,docker-compose.yml,example.env \
-    test_djangotainer ./test_djangotainer
+  django-admin startproject \
+  --template=https://github.com/roknicmilos/djangotainer/archive/main.zip \
+  --name=pyproject.toml,docker-compose.yml,example.env \
+  test_djangotainer ./test_djangotainer
 
   printc "Deactivating Python virtual environment (venv) \n" "info"
   deactivate

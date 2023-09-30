@@ -3,3 +3,9 @@ DJANGO_SETTINGS_MODULE = "{{ project_name }}.settings"
 
 [tool.coverage.html]
 directory = "static/coverage"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "class TestCase",
+]
