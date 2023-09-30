@@ -5,7 +5,7 @@ from apps.common.tests import TestCase
 from apps.common.utils import get_model_admin_change_details_url
 
 
-class TestGetModelAdminChangeDetailsUrl(TestCase):
+class TestGetModelAdminChangeDetailsURL(TestCase):
     def test_should_return_empty_string_when_model_is_not_registered_on_admin_site(self):
         group = Group.objects.create(name="New group")
         url = get_model_admin_change_details_url(group)
