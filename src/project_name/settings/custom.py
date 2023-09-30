@@ -6,4 +6,6 @@ CUSTOM_APPS = [
 
 CUSTOM_MIDDLEWARE = []
 
-FIXTURES = ()
+FIXTURES = (
+    "emails",
+)
