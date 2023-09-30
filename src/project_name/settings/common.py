@@ -67,7 +67,7 @@ USE_I18N = False
 
 USE_TZ = False
 
-SECRET_KEY = config("SECRET_KEY", default="secret-key")  # TODO
+SECRET_KEY = config("SECRET_KEY")
 
 WSGI_APPLICATION = "%s.wsgi.application" % SITE_NAME
 
