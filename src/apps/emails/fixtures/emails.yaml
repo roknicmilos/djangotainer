@@ -2,7 +2,7 @@
   pk: 1
   fields:
     subject: Pending email
-    recipient: recipient.a@example.com
+    recipient: admin@example.com
     context:
       first_name: Jon
       last_name: Snow
