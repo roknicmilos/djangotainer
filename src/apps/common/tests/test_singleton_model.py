@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.common.models.singleton_model import SingletonModel
+from apps.common.models import SingletonModel
 from apps.common.tests import TestCase
 
 

@@ -74,7 +74,10 @@ class EmailThread(BaseModel):
                 error=str(error)
             )
         else:
-            self.update(status=self.Statuses.SUCCESS if sent_email_count else self.Statuses.FAILURE)
+            self.update(
+                status=self.Statuses.SUCCESS if sent_email_count else self.Statuses.FAILURE,
+                error='' if sent_email_count else 'Email was not sent'
+            )
 
     def _do_send_email(self) -> int:
         html_message = self._render_html_message()
@@ -82,10 +85,10 @@ class EmailThread(BaseModel):
             subject=self.subject,
             message=strip_tags(html_message),
             from_email=self.email_from,
-            recipient_list=[self.recipient_email],
-            html_message=self._render_html_message(),
+            recipient_list=[self.recipient],
+            html_message=html_message,
         )
 
     def _render_html_message(self) -> str:
         template = get_template(self.template_path)
-        return template.render(self.email_context)
+        return template.render(self.context)
