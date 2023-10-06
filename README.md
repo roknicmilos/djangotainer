@@ -22,7 +22,7 @@ ___
 
 ## Quickstart
 
-### Create a new Django project
+### Create Django project
 
 Below are the steps for creating a new Django project using the
 [djangotainer](https://github.com/roknicmilos/djangotainer) project
@@ -30,16 +30,15 @@ template.
 
 1. Create a new directory for the project:
 
-   `mkdir my_project`
-   (replace `my_project` with the name of your project)
+   `mkdir [my_project]`
 
 2. Create Python virtual environment [venv](https://docs.python.org/3/library/venv.html) in the project directory:
 
-   `python3 -m venv my_project/venv`
+   `python3 -m venv [my_project]/venv`
 
 3. Activate Python virtual environment:
 
-   `source my_project/venv/bin/activate`
+   `source [my_project]/venv/bin/activate`
 
 4. Install Django:
 
@@ -48,14 +47,15 @@ template.
 5. Create new Django project from "djangotainer" project template:
 
    ```shell
-    django-admin startproject --template djangotainer \
+    django-admin startproject \
+    --template=https://github.com/roknicmilos/djangotainer/archive/main.zip \
     --name=pyproject.toml,docker-compose.yml,example.env \
-    my_project ./my_project
+    test_djangotainer ./test_djangotainer
    ```
 
 6. Deactivate and remove Python virtual environment:
 
-   `deactivate && rm -rf my_project/venv`
+   `deactivate && rm -rf [my_project]/venv`
 
 ### Start the project
 
@@ -66,7 +66,7 @@ next steps:
 
 1. Move to newly created Djagno project:
 
-   `cd my_project`
+   `cd [my_project]`
 
 2. Create `.env` using `example.com`:
 
@@ -107,37 +107,46 @@ Available options:
 
 ## Preinstalled Django apps
 
-This Django project template comes with two custom apps
-(`users` and `common`).
+This Django project template comes with three custom apps:
+`common`, `users` and `emails`.
 
 You can modify, extend or remove these apps if you want,
 but note that they come with some minimal boilerplate code
 that is quite common across majority of Django projects.
 
-`users` app:
-
-- comes with custom `User` model
-    - Django documentation [highly recommends setting up a
-      custom user model](https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project)
-- deactivates model admin for `Group` model
-    - to simplify the Django Admin interface by hiding `Group`
-      model that is not that often used in Django projects
-
-`common` app comes with:
+### `common` app
 
 - models: `BaseModel` and `SingletonModel`
-    - comes with `created` and `modified` fields, and `update` method
+  - comes with `created` and `modified` fields, and `update` method
 - management command: `load_data`
-    - an extension of `loaddata` management command that
-      already comes with standard Django project
-    - this extension allows defining `FIXTURES` collection
-      (`list` or `tuple`) in project `settings` that will be used to
-      load the fixtures in a specific defined by that collection
+  - an extension of `loaddata` management command that
+    already comes with standard Django project
+  - this extension allows defining `FIXTURES` collection
+    (`list` or `tuple`) in project `settings` that will be used to
+    load the fixtures in a specific order defined by that collection
 - custom model admin class (mixin)
-    - easily separate fields (and fieldsets) for "add" and "change"
-      model admin form
-    - automatically adds readonly `ID` field that will be displayed at
-      the top of the model admin form
+  - easily separate fields (and fieldsets) for "add" and "change"
+    model admin form
+  - automatically adds readonly `ID` field that will be displayed at
+    the top of the model admin form
+
+### `users` app
+
+- models: `User`
+  - Django documentation [highly recommends setting up a
+    custom user model](https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project)
+- deactivates model admin for `Group` model
+  - to simplify the Django Admin interface by hiding `Group`
+    model that is not that often used in Django projects
+
+### `emails` app:
+
+- models: `EamilThread`
+  - Stores relevant email data and has functionality to send an
+    email via `threading.Thread`
+- `templates/example_email.html`
+  - An email template example that can be used for custom email
+    templates
 
 ## Default packages
 
@@ -202,9 +211,6 @@ There is a useful script called [create_project.sh](scripts/create_project.sh)
 that does all the steps from the [Create a new Django project](#create-a-new-django-project)
 section, and optionally also runs the steps from [Start the project](#start-the-project)
 section.
-
-When making changes to this project, it's necessary to check
-if a new Django project can be created using this template.
 
 Instead of doing all the steps from [Create a new Django project](#create-a-new-django-project)
 and [Start the project](#start-the-project) sections, you can
