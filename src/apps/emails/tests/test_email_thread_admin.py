@@ -1,4 +1,6 @@
 from unittest.mock import patch
+
+from django.contrib.auth import get_user_model
 from faker import Faker
 
 from django.contrib.admin.sites import site as admin_site
@@ -6,15 +8,20 @@ from django.contrib.admin.sites import site as admin_site
 from apps.common.tests import TestCase
 from apps.common.utils import get_model_admin_change_details_url
 from apps.emails.admin import EmailThreadAdmin
+from apps.emails.models import EmailThread
 from apps.emails.tests.factories import EmailThreadFactory
-from apps.users.models import User
-from apps.users.tests.factories import UserFactory
 
 
 class TestEmailThreadAdmin(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user_model = get_user_model()
+
     def setUp(self) -> None:
         super().setUp()
-        self.email_thread_admin = EmailThreadAdmin(model=User, admin_site=admin_site)
+        self.email_thread_admin = EmailThreadAdmin(model=EmailThread, admin_site=admin_site)
 
     def test_should_not_be_editable_model_admin(self):
         request = self.get_request_example()
@@ -38,7 +45,7 @@ class TestEmailThreadAdmin(TestCase):
 
     def test_should_return_single_dash_when_user_recipient_does_not_exist(self):
         email = Faker().email()
-        self.assertFalse(User.objects.filter(email=email).exists())
+        self.assertFalse(self.user_model.objects.filter(email=email).exists())
 
         # When EmailThread instance is not passed:
         recipient_user = self.email_thread_admin.recipient_user()
@@ -51,7 +58,7 @@ class TestEmailThreadAdmin(TestCase):
 
     def test_should_return_single_link_to_user_recipient_when_they_exist(self):
         email = Faker().email()
-        user = UserFactory(email=email)
+        user = self.user_model.objects.create(email=email)
         email_thread = EmailThreadFactory(recipient=email)
         recipient_user = self.email_thread_admin.recipient_user(obj=email_thread)
         href = get_model_admin_change_details_url(obj=user)
