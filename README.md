@@ -104,6 +104,15 @@ Available options:
   satisfied.
   That coverage percentage is defined with environment
   variable `TEST_COVERAGE_PERCENTAGE` and it defaults to `100`.
+  Check [src/pyproject.toml](src/pyproject.toml) for the Pytest
+  and Coverage configuration.
+
+- ### `check`
+
+  Runs [Flake8](https://flake8.pycqa.org/) and throws an error
+  if there are any linting issues in the code.
+  Check [src/pyproject.toml](src/pyproject.toml) for the Flake8
+  configuration.
 
 ## Preinstalled Django apps
 
@@ -117,36 +126,36 @@ that is quite common across majority of Django projects.
 ### `common` app
 
 - models: `BaseModel` and `SingletonModel`
-  - comes with `created` and `modified` fields, and `update` method
+    - comes with `created` and `modified` fields, and `update` method
 - management command: `load_data`
-  - an extension of `loaddata` management command that
-    already comes with standard Django project
-  - this extension allows defining `FIXTURES` collection
-    (`list` or `tuple`) in project `settings` that will be used to
-    load the fixtures in a specific order defined by that collection
+    - an extension of `loaddata` management command that
+      already comes with standard Django project
+    - this extension allows defining `FIXTURES` collection
+      (`list` or `tuple`) in project `settings` that will be used to
+      load the fixtures in a specific order defined by that collection
 - custom model admin class (mixin)
-  - easily separate fields (and fieldsets) for "add" and "change"
-    model admin form
-  - automatically adds readonly `ID` field that will be displayed at
-    the top of the model admin form
+    - easily separate fields (and fieldsets) for "add" and "change"
+      model admin form
+    - automatically adds readonly `ID` field that will be displayed at
+      the top of the model admin form
 
 ### `users` app
 
 - models: `User`
-  - Django documentation [highly recommends setting up a
-    custom user model](https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project)
+    - Django documentation [highly recommends setting up a
+      custom user model](https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project)
 - deactivates model admin for `Group` model
-  - to simplify the Django Admin interface by hiding `Group`
-    model that is not that often used in Django projects
+    - to simplify the Django Admin interface by hiding `Group`
+      model that is not that often used in Django projects
 
 ### `emails` app:
 
 - models: `EamilThread`
-  - Stores relevant email data and has functionality to send an
-    email via `threading.Thread`
+    - Stores relevant email data and has functionality to send an
+      email via `threading.Thread`
 - `templates/example_email.html`
-  - An email template example that can be used for custom email
-    templates
+    - An email template example that can be used for custom email
+      templates
 
 ## Default packages
 
