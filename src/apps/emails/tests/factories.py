@@ -11,7 +11,7 @@ class EmailThreadFactory(DjangoModelFactory):
     class Meta:
         model = EmailThread
 
-    subject = factory.LazyAttribute(lambda _: 'Email subject')
+    subject = factory.LazyAttribute(lambda _: "Email subject")
     recipient = factory.LazyAttribute(lambda _: faker.email())
-    context = factory.LazyAttribute(lambda _: {'first_name': faker.first_name()})
-    template_path = 'example_email.html'
+    context = factory.LazyAttribute(lambda _: {"first_name": faker.first_name()})
+    template_path = "example_email.html"

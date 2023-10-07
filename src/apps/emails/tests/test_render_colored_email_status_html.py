@@ -5,7 +5,6 @@ from apps.emails.utils import render_colored_email_status_html
 
 
 class TestRenderColoredEmailStatusHTML(TestCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 
 
 class TestCase(BaseTestCase):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.client = Client()

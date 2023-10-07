@@ -55,7 +55,7 @@ class TestLoadData(TestCase):
         command.run_from_argv(argv=argv)
         mock_prepare_argv.assert_called_once_with(argv=argv)
 
-    @override_settings(FIXTURES=('example',))
+    @override_settings(FIXTURES=("example",))
     def test_should_load_fixtures(self):
         prepared_argv = LoadDataCommand.prepare_argv(argv=[])
         call_command("load_data", *prepared_argv)
