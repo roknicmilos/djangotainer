@@ -1,9 +1,8 @@
 from unittest.mock import patch
 
+from django.contrib.admin.sites import site as admin_site
 from django.contrib.auth import get_user_model
 from faker import Faker
-
-from django.contrib.admin.sites import site as admin_site
 
 from apps.common.tests import TestCase
 from apps.common.utils import get_model_admin_change_details_url
@@ -13,7 +12,6 @@ from apps.emails.tests.factories import EmailThreadFactory
 
 
 class TestEmailThreadAdmin(TestCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -30,7 +28,7 @@ class TestEmailThreadAdmin(TestCase):
 
     @patch("apps.emails.admin.render_colored_email_status_html")
     def test_should_return_colored_status(self, mock_render_colored_email_status_html):
-        mock_render_colored_email_status_html.return_value = '<div>colored label</div>'
+        mock_render_colored_email_status_html.return_value = "<div>colored label</div>"
 
         # When EmailThread instance is not passed:
         colored_status = self.email_thread_admin.colored_status()

@@ -1,8 +1,9 @@
 import sys
 from copy import deepcopy
+from os.path import abspath, basename, dirname, join, normpath
+
 from decouple import config
 from django.utils.log import DEFAULT_LOGGING
-from os.path import abspath, basename, dirname, join, normpath
 
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 

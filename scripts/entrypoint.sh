@@ -31,8 +31,15 @@ run_server() {
   fi
 }
 
+fail_isort() {
+  printc "Issues found by 'isort'! " "danger"
+  printc "Check the output above to locate and fix the issues\n" "danger"
+  exit 1
+}
+
 START_ARG="start"
 TEST_ARG="test"
+CHECK_ARG="check"
 TEST_COVERAGE_PERCENTAGE=${TEST_COVERAGE_PERCENTAGE:-100}
 
 #########################################################################
@@ -42,9 +49,18 @@ if [ "$1" = "$START_ARG" ]; then
   wait_for_postgres
   init_django_project
   run_server
+
 elif [ "$1" = "$TEST_ARG" ]; then
   printc "Running tests (pytest) with expected $TEST_COVERAGE_PERCENTAGE% coverage...\n" "info"
   pytest --cov --cov-report term:skip-covered --cov-fail-under="$TEST_COVERAGE_PERCENTAGE" -n auto
+
+elif [ "$1" = "$CHECK_ARG" ]; then
+  printc "[flake8] Checking linting issues...\n" "info"
+  flake8 --toml-config=pyproject.toml .
+
+  printc "[isort] Checking issues with import...\n" "info"
+  isort --check . && printc "No issues with imports.\n" "success" || fail_isort
+
 else
   printc "Unknown argument: \"$1\" \n" "danger"
   printc "Available first arguments: \"$START_ARG\" \n" "info"

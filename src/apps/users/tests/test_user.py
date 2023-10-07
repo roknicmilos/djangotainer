@@ -2,12 +2,11 @@ import pytest
 from django.db.utils import IntegrityError
 from django.test import TransactionTestCase
 
-from apps.users.models import User
 from apps.common.tests import TestCase
+from apps.users.models import User
 
 
 class TestUser(TestCase, TransactionTestCase):
-
     def test_should_create_user(self):
         kwargs = {
             "email": "example@example.com",
@@ -45,7 +44,7 @@ class TestUser(TestCase, TransactionTestCase):
 
     def test_email_case_insensitive_unique(self):
         User.objects.create(email="Hacker@example.com")
-        error_message = 'duplicate key value violates unique constraint'
+        error_message = "duplicate key value violates unique constraint"
         with pytest.raises(IntegrityError, match=error_message):
             User.objects.create(email="hacker@example.com")
 

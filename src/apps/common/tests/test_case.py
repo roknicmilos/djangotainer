@@ -1,10 +1,10 @@
-from django.core.handlers.wsgi import WSGIRequest
-from django.test import Client, TestCase as BaseTestCase
 from django.contrib.auth import get_user_model
+from django.core.handlers.wsgi import WSGIRequest
+from django.test import Client
+from django.test import TestCase as BaseTestCase
 
 
 class TestCase(BaseTestCase):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.client = Client()
