@@ -31,6 +31,12 @@ run_server() {
   fi
 }
 
+fail_isort() {
+  printc "Issues found by 'isort'! " "danger"
+  printc "Check the output above to locate and fix the issues\n" "danger"
+  exit 1
+}
+
 START_ARG="start"
 TEST_ARG="test"
 CHECK_ARG="check"
@@ -51,6 +57,9 @@ elif [ "$1" = "$TEST_ARG" ]; then
 elif [ "$1" = "$CHECK_ARG" ]; then
   printc "[flake8] Checking linting issues...\n" "info"
   flake8 --toml-config=pyproject.toml .
+
+  printc "[isort] Checking issues with import...\n" "info"
+  isort --check . && printc "No issues with imports.\n" "success" || fail_isort
 
 else
   printc "Unknown argument: \"$1\" \n" "danger"
