@@ -2,7 +2,7 @@
 ### Base image ###
 ##################
 
-FROM python:3.11 AS base
+FROM python:3.12 AS base
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1

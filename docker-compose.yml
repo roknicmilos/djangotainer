@@ -20,7 +20,7 @@ services:
 
   postgres:
     container_name: {{ project_name }}-postgres
-    image: postgres:15
+    image: postgres:16
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_USER=${DB_USERNAME}
