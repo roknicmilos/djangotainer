@@ -9,3 +9,7 @@ exclude_lines = [
     "pragma: no cover",
     "class TestCase",
 ]
+
+[tool.black]
+line-length = 120
+no-space-before-colon = "True"
