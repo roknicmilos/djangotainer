@@ -1,9 +1,8 @@
 from unittest.mock import patch
 
+from django.contrib.admin.sites import site as admin_site
 from django.contrib.auth import get_user_model
 from faker import Faker
-
-from django.contrib.admin.sites import site as admin_site
 
 from apps.common.tests import TestCase
 from apps.common.utils import get_model_admin_change_details_url

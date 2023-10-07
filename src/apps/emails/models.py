@@ -1,10 +1,11 @@
 from threading import Thread
+
 from django.conf import settings
+from django.core.mail import send_mail
+from django.db import models
 from django.template.loader import get_template
 from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
-from django.core.mail import send_mail
-from django.db import models
 
 from apps.common.models import BaseModel
 

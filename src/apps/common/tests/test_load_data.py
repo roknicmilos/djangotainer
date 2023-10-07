@@ -1,9 +1,9 @@
 from unittest.mock import patch
 
-from django.db import models
-from django.test import override_settings
 from django.conf import settings
 from django.core.management import BaseCommand, call_command
+from django.db import models
+from django.test import override_settings
 
 from apps.common.management.commands.load_data import Command as LoadDataCommand
 from apps.common.models import BaseModel

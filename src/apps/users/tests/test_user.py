@@ -2,8 +2,8 @@ import pytest
 from django.db.utils import IntegrityError
 from django.test import TransactionTestCase
 
-from apps.users.models import User
 from apps.common.tests import TestCase
+from apps.users.models import User
 
 
 class TestUser(TestCase, TransactionTestCase):
