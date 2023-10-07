@@ -1,14 +1,14 @@
 # Adopted from https://github.com/mikepenz/release-changelog-builder-action
 
-name: 'Create release'
+name: "Create release"
 on:
   push:
     tags:
-      - '*'
+      - "*"
 jobs:
   create-release:
     if: startsWith(github.ref, 'refs/tags/')
-    name: 'Create a new release from a tag'
+    name: "Create a new release from a tag"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.5.3
@@ -21,7 +21,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          configuration: 'changelog-configuration.json'
+          configuration: "changelog-configuration.json"
       - name: Create Release
         uses: mikepenz/action-gh-release@v1
         with:
