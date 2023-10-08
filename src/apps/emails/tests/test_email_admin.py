@@ -6,12 +6,12 @@ from faker import Faker
 
 from apps.common.tests import TestCase
 from apps.common.utils import get_model_admin_change_details_url
-from apps.emails.admin import EmailThreadAdmin
-from apps.emails.models import EmailThread
-from apps.emails.tests.factories import EmailThreadFactory
+from apps.emails.admin import EmailAdmin
+from apps.emails.models import Email
+from apps.emails.tests.factories import EmailFactory
 
 
-class TestEmailThreadAdmin(TestCase):
+class TestEmailAdmin(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -19,46 +19,49 @@ class TestEmailThreadAdmin(TestCase):
 
     def setUp(self) -> None:
         super().setUp()
-        self.email_thread_admin = EmailThreadAdmin(model=EmailThread, admin_site=admin_site)
+        self.email_admin = EmailAdmin(
+            model=Email,
+            admin_site=admin_site
+        )
 
     def test_should_not_be_editable_model_admin(self):
         request = self.get_request_example()
-        has_change_permission = self.email_thread_admin.has_change_permission(request=request)
+        has_change_permission = self.email_admin.has_change_permission(request=request)
         self.assertIs(has_change_permission, False)
 
     @patch("apps.emails.admin.render_colored_email_status_html")
     def test_should_return_colored_status(self, mock_render_colored_email_status_html):
         mock_render_colored_email_status_html.return_value = "<div>colored label</div>"
 
-        # When EmailThread instance is not passed:
-        colored_status = self.email_thread_admin.colored_status()
+        # When Email instance is not passed:
+        colored_status = self.email_admin.colored_status()
         self.assertEqual(colored_status, "-")
         mock_render_colored_email_status_html.assert_not_called()
 
-        # When EmailThread instance is passed:
-        email_thread = EmailThreadFactory()
-        colored_status = self.email_thread_admin.colored_status(obj=email_thread)
+        # When Email instance is passed:
+        email = EmailFactory()
+        colored_status = self.email_admin.colored_status(obj=email)
         self.assertEqual(colored_status, mock_render_colored_email_status_html.return_value)
-        mock_render_colored_email_status_html.assert_called_once_with(email_thread=email_thread)
+        mock_render_colored_email_status_html.assert_called_once_with(email=email)
 
     def test_should_return_single_dash_when_user_recipient_does_not_exist(self):
         email = Faker().email()
         self.assertFalse(self.user_model.objects.filter(email=email).exists())
 
-        # When EmailThread instance is not passed:
-        recipient_user = self.email_thread_admin.recipient_user()
+        # When Email instance is not passed:
+        recipient_user = self.email_admin.recipient_user()
         self.assertEqual(recipient_user, "-")
 
-        # When EmailThread instance is passed:
-        email_thread = EmailThreadFactory(recipient=email)
-        recipient_user = self.email_thread_admin.recipient_user(obj=email_thread)
+        # When Email instance is passed:
+        email = EmailFactory(recipient=email)
+        recipient_user = self.email_admin.recipient_user(obj=email)
         self.assertEqual(recipient_user, "-")
 
     def test_should_return_single_link_to_user_recipient_when_they_exist(self):
-        email = Faker().email()
-        user = self.user_model.objects.create(email=email)
-        email_thread = EmailThreadFactory(recipient=email)
-        recipient_user = self.email_thread_admin.recipient_user(obj=email_thread)
+        email_address = Faker().email()
+        user = self.user_model.objects.create(email=email_address)
+        email = EmailFactory(recipient=email_address)
+        recipient_user = self.email_admin.recipient_user(obj=email)
         href = get_model_admin_change_details_url(obj=user)
-        expected_recipient_user = f'<a href="{href}">{email}</a>'
+        expected_recipient_user = f'<a href="{href}">{email_address}</a>'
         self.assertEqual(recipient_user, expected_recipient_user)

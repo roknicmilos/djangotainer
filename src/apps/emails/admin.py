@@ -7,12 +7,12 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.common.admin import ModelAdmin
 from apps.common.utils import get_model_admin_change_details_url
-from apps.emails.models import EmailThread
+from apps.emails.models import Email
 from apps.emails.utils import render_colored_email_status_html
 
 
-@admin.register(EmailThread)
-class EmailThreadAdmin(ModelAdmin):
+@admin.register(Email)
+class EmailAdmin(ModelAdmin):
     list_display = (
         "__str__",
         "subject",
@@ -53,11 +53,11 @@ class EmailThreadAdmin(ModelAdmin):
         },),
     )
 
-    def has_change_permission(self, request, obj: EmailThread = None) -> bool:
+    def has_change_permission(self, request, obj: Email = None) -> bool:
         return False
 
     @admin.display(description=_("recipient user"))
-    def recipient_user(self, obj: EmailThread = None) -> str:
+    def recipient_user(self, obj: Email = None) -> str:
         user_model = get_user_model()
         if obj and (user := user_model.objects.filter(email=obj.recipient).first()):
             href = get_model_admin_change_details_url(obj=user)
@@ -65,8 +65,8 @@ class EmailThreadAdmin(ModelAdmin):
         return "-"
 
     @admin.display(description=_("status"))
-    def colored_status(self, obj: EmailThread = None) -> str:
-        return render_colored_email_status_html(email_thread=obj) if obj else "-"
+    def colored_status(self, obj: Email = None) -> str:
+        return render_colored_email_status_html(email=obj) if obj else "-"
 
     @admin.action(description=_("Send selected emails"))
     def send_emails(self, request: WSGIRequest, queryset: QuerySet) -> None:
@@ -85,8 +85,8 @@ class EmailThreadAdmin(ModelAdmin):
 
 def _do_send_emails(request: WSGIRequest, queryset: QuerySet) -> None:
     emails_count = queryset.count()
-    for email_thread in queryset:
-        email_thread.start()
+    for email in queryset:
+        email.send()
     message = _("Successfully sent {emails_count} {label}.").format(
         emails_count=emails_count,
         label=_("emails") if emails_count > 1 else _("email")

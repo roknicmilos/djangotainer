@@ -2,14 +2,14 @@ import factory
 from factory.django import DjangoModelFactory
 from faker import Faker
 
-from apps.emails.models import EmailThread
+from apps.emails.models import Email
 
 faker = Faker()
 
 
-class EmailThreadFactory(DjangoModelFactory):
+class EmailFactory(DjangoModelFactory):
     class Meta:
-        model = EmailThread
+        model = Email
 
     subject = factory.LazyAttribute(lambda _: "Email subject")
     recipient = factory.LazyAttribute(lambda _: faker.email())
