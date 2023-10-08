@@ -6,7 +6,7 @@
     context:
       first_name: Jon
       last_name: Snow
-    template_path: dummy/template/path.html
+    template_path: emails/example.html
     created: 2023-01-01T00:00:00
     modified: 2023-01-01T00:00:00
 
@@ -18,7 +18,7 @@
     recipient: recipient.b@example.com
     context:
       name: Daenerys Targaryen
-    template_path: dummy/template/path.html
+    template_path: emails/example.html
     created: 2023-01-01T01:00:00
     modified: 2023-01-01T01:00:00
 
@@ -33,6 +33,6 @@
       name: Cersei Lannister
       age: 40
     error: Something went wrong :(
-    template_path: dummy/template/path.html
+    template_path: emails/example.html
     created: 2023-01-01T00:02:00
     modified: 2023-01-01T00:02:00
