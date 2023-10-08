@@ -6,7 +6,7 @@
     context:
       first_name: Jon
       last_name: Snow
-    template_path: dummy/template/path.html
+    template_path: emails/example.html
     created: 2023-01-01T00:00:00
     modified: 2023-01-01T00:00:00
 
@@ -15,24 +15,61 @@
   fields:
     subject: Successful email
     status: success
-    recipient: recipient.b@example.com
+    recipient: recipient.a@example.com
     context:
       name: Daenerys Targaryen
-    template_path: dummy/template/path.html
+    template_path: emails/example.html
     created: 2023-01-01T01:00:00
     modified: 2023-01-01T01:00:00
-
 
 - model: emails.EmailThread
   pk: 3
   fields:
     subject: Failed email
     status: failure
-    recipient: recipient.c@example.com
+    recipient: recipient.b@example.com
     context:
       name: Cersei Lannister
       age: 40
     error: Something went wrong :(
-    template_path: dummy/template/path.html
+    template_path: emails/example.html
+    created: 2023-01-01T00:02:00
+    modified: 2023-01-01T00:02:00
+
+- model: emails.EmailThread
+  pk: 4
+  fields:
+    subject: Pending email 2
+    recipient: admin@example.com
+    context:
+      first_name: Jon
+      last_name: Snow
+    template_path: emails/example.html
+    created: 2023-01-01T00:00:00
+    modified: 2023-01-01T00:00:00
+
+- model: emails.EmailThread
+  pk: 5
+  fields:
+    subject: Successful email 2
+    status: success
+    recipient: recipient.c@example.com
+    context:
+      name: Daenerys Targaryen
+    template_path: emails/example.html
+    created: 2023-01-01T01:00:00
+    modified: 2023-01-01T01:00:00
+
+- model: emails.EmailThread
+  pk: 6
+  fields:
+    subject: Failed email 2
+    status: failure
+    recipient: recipient.d@example.com
+    context:
+      name: Cersei Lannister
+      age: 40
+    error: Something went wrong :(
+    template_path: emails/example.html
     created: 2023-01-01T00:02:00
     modified: 2023-01-01T00:02:00

@@ -37,6 +37,7 @@ that is quite common across majority of Django projects.
 - models: `EamilThread`
     - Stores relevant email data and has functionality to send an
       email via `threading.Thread`
-- `templates/example_email.html`
-    - An email template example that can be used for custom email
-      templates
+- `Send selected emails` action in the list view for `EamilThread`
+  model in Django Admin
+- `templates/emails/base.html`
+    - A base for custom emails templates
