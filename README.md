@@ -93,8 +93,17 @@ to start that Django project by following the next steps:
 3. (Optional) change the values of environment variables in `.env` file
 
 4. Start the containers:
-
-   `docker compose up -d`
+    - development mode:
+      ```shell
+      docker compose up -d
+      ```
+    - production mode:
+      ```shell
+      docker compose \
+      -f docker-compose.yml \
+      -f docker-compose.production.yml \
+      up -d
+      ```
 
 ## Dependencies
 

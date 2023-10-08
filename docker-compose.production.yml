@@ -5,25 +5,6 @@ services:
   django:
     container_name: {{ project_name }}-django
     build:
-      context: .
-      dockerfile: ./Dockerfile
       target: production
-    env_file:
-      - .env
-    ports:
-      - "${PORT}:8000"
     depends_on:
       - postgres
-
-  postgres:
-    container_name: {{ project_name }}-postgres
-    image: postgres:16
-    environment:
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_USER=${DB_USERNAME}
-      - POSTGRES_DB=${DB_NAME}
-    volumes:
-      - {{ project_name }}-postgres-data:/var/lib/postgresql/data
-
-volumes:
-  {{ project_name }}-postgres-data:
