@@ -1,16 +1,16 @@
 from django.utils.safestring import mark_safe
 
-from apps.emails.models import EmailThread
+from apps.emails.models import Email
 
 
-def render_colored_email_status_html(email_thread: EmailThread) -> str:
+def render_colored_email_status_html(email: Email) -> str:
     colors_map = {
-        EmailThread.Statuses.PENDING: ("#e0e0e0", "black"),
-        EmailThread.Statuses.SUCCESS: ("#def7d9", "green"),
-        EmailThread.Statuses.FAILURE: ("#f7d9d9", "red"),
+        Email.Statuses.PENDING: ("#e0e0e0", "black"),
+        Email.Statuses.SUCCESS: ("#def7d9", "green"),
+        Email.Statuses.FAILURE: ("#f7d9d9", "red"),
     }
 
-    background_color, text_color = colors_map.get(email_thread.status)
+    background_color, text_color = colors_map.get(email.status)
 
     style = (
         f"color: {text_color};"
@@ -22,4 +22,4 @@ def render_colored_email_status_html(email_thread: EmailThread) -> str:
         "width: fit-content;"
     )
 
-    return mark_safe(f'<div style="{style}">{email_thread.status}</div>')
+    return mark_safe(f'<div style="{style}">{email.status}</div>')

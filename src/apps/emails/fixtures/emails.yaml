@@ -1,4 +1,4 @@
-- model: emails.EmailThread
+- model: emails.Email
   pk: 1
   fields:
     subject: Pending email
@@ -10,7 +10,7 @@
     created: 2023-01-01T00:00:00
     modified: 2023-01-01T00:00:00
 
-- model: emails.EmailThread
+- model: emails.Email
   pk: 2
   fields:
     subject: Successful email
@@ -22,7 +22,7 @@
     created: 2023-01-01T01:00:00
     modified: 2023-01-01T01:00:00
 
-- model: emails.EmailThread
+- model: emails.Email
   pk: 3
   fields:
     subject: Failed email
@@ -36,7 +36,7 @@
     created: 2023-01-01T00:02:00
     modified: 2023-01-01T00:02:00
 
-- model: emails.EmailThread
+- model: emails.Email
   pk: 4
   fields:
     subject: Pending email 2
@@ -48,7 +48,7 @@
     created: 2023-01-01T00:00:00
     modified: 2023-01-01T00:00:00
 
-- model: emails.EmailThread
+- model: emails.Email
   pk: 5
   fields:
     subject: Successful email 2
@@ -60,7 +60,7 @@
     created: 2023-01-01T01:00:00
     modified: 2023-01-01T01:00:00
 
-- model: emails.EmailThread
+- model: emails.Email
   pk: 6
   fields:
     subject: Failed email 2

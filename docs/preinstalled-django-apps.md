@@ -34,10 +34,10 @@ that is quite common across majority of Django projects.
 
 ### `emails` app:
 
-- models: `EamilThread`
+- models: `Eamil`
     - Stores relevant email data and has functionality to send an
       email via `threading.Thread`
-- `Send selected emails` action in the list view for `EamilThread`
+- `Send selected emails` action in the list view for `Eamil`
   model in Django Admin
 - `templates/emails/base.html`
     - A base for custom emails templates

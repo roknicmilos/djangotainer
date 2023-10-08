@@ -10,10 +10,10 @@ from django.utils.translation import gettext_lazy as _
 from apps.common.models import BaseModel
 
 
-class EmailThread(BaseModel):
+class Email(BaseModel):
     class Meta:
-        verbose_name = _("Email Thread")
-        verbose_name_plural = _("Email Threads")
+        verbose_name = _("Email")
+        verbose_name_plural = _("Emails")
 
     email_from = settings.EMAIL_HOST_USER
 
@@ -63,10 +63,10 @@ class EmailThread(BaseModel):
     def __str__(self):
         return f'"{self.subject}" email'
 
-    def start(self) -> None:
-        Thread(target=self.send_email).start()
+    def send(self) -> None:
+        Thread(target=self._send_email).start()
 
-    def send_email(self) -> None:
+    def _send_email(self) -> None:
         try:
             sent_email_count = self._do_send_email()
         except Exception as error:
