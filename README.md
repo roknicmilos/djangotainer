@@ -8,6 +8,11 @@ Additionally, it includes essential, commonly used apps that aren't
 part of Django's default package but are indispensable in nearly
 every Django project.
 
+**NOTE:** The instructions and CLI commands provided in this document
+have been tested on **Linux**. If you are using a different operating
+system, you may need to make appropriate adjustments to the commands
+to match your environment.
+
 ---
 
 Table of Contents
