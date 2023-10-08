@@ -4,6 +4,7 @@ from os.path import abspath, basename, dirname, join, normpath
 
 from decouple import config
 from django.utils.log import DEFAULT_LOGGING
+from django.utils.translation import gettext_lazy as _
 
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -53,7 +55,7 @@ TEMPLATES = [
             "context_processors": [
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.debug",
-                "django.template.context_processors.i18n",
+                "apps.common.context_processors.i18n",
                 "django.template.context_processors.media",
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
@@ -64,7 +66,20 @@ TEMPLATES = [
     },
 ]
 
-USE_I18N = False
+USE_I18N = True
+
+LOCALE_PATHS = (
+    join(PROJECT_ROOT, "run", "locale"),
+)
+
+ENGLISH_LANG_SLUG = "en"
+SERBIAN_LANG_SLUG = "sr-latn"
+LANGUAGES = (
+    (ENGLISH_LANG_SLUG, _("English")),
+    (SERBIAN_LANG_SLUG, _("Serbian (Latin)")),
+)
+
+LANGUAGE_CODE = ENGLISH_LANG_SLUG
 
 USE_TZ = False
 

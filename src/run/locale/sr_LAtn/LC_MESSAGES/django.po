@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-10 12:34-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: apps/common/admin/model_admin.py:45
+msgid "id"
+msgstr "id"
+
+#: apps/emails/admin.py:45
+msgid "Details"
+msgstr "Detalji"
+
+#: apps/emails/admin.py:59
+msgid "recipient user"
+msgstr "korisnik primaoc"
+
+#: apps/emails/admin.py:67 apps/emails/models.py:48
+msgid "status"
+msgstr "status"
+
+#: apps/emails/admin.py:71
+msgid "Send selected emails"
+msgstr "Pošalji odabrane mejlove"
+
+#: apps/emails/admin.py:90
+#, python-brace-format
+msgid "Successfully sent {emails_count} {label}."
+msgstr "{emails_count} {label} uspešno poslato."
+
+#: apps/emails/admin.py:92
+msgid "emails"
+msgstr "mejlovi"
+
+#: apps/emails/admin.py:92 apps/users/models.py:26
+msgid "email"
+msgstr "mejl"
+
+#: apps/emails/admin.py:102
+msgid ""
+"You can select a maximum of 5 emails to send at once. Please reduce the "
+"number of selected emails and try again."
+msgstr ""
+"Možete odabrati maksimalno 5 mejlova za slanje. Molimo vas da smanjite broj "
+"odabranih mejlova i pokušate ponovo."
+
+#: apps/emails/models.py:15
+msgid "Email"
+msgstr "Mejl"
+
+#: apps/emails/models.py:16
+msgid "Emails"
+msgstr "Mejlovi"
+
+#: apps/emails/models.py:21
+msgid "waiting to send email"
+msgstr "čekanje na slanje mejla"
+
+#: apps/emails/models.py:22
+msgid "successfully sent email"
+msgstr "uspešno poslat mejl"
+
+#: apps/emails/models.py:23
+msgid "failed to send email"
+msgstr "neuspešno poslat mejl"
+
+#: apps/emails/models.py:26
+msgid "email subject"
+msgstr "naslov mejla"
+
+#: apps/emails/models.py:30
+msgid "recipient email address"
+msgstr "mejl adresa primaoca"
+
+#: apps/emails/models.py:34
+msgid "email context"
+msgstr "kontekst mejla"
+
+#: apps/emails/models.py:38
+msgid "template path"
+msgstr "putanja do templejta"
+
+#: apps/emails/models.py:42
+msgid "category"
+msgstr "kategorija"
+
+#: apps/emails/models.py:45
+msgid "For easier grouping and searching of specific emails"
+msgstr "Za lakše grupisanje i pretraživanje specifičnih mejlova"
+
+#: apps/emails/models.py:53
+msgid ""
+"Note that the email can successfully be sent even if the recipient email "
+"address does not exist"
+msgstr ""
+"Imajte u vidu da mejl može uspešno da bude poslat čak i kada mejl adresa ne "
+"postoji"
+
+#: apps/emails/models.py:58
+msgid "error"
+msgstr "greška"
+
+#: apps/emails/models.py:60
+msgid "An error occurred during the email sending process"
+msgstr "Greška koja se javila tokom procesa slanja mejla"
+
+#: apps/emails/templates/emails/example.html:15
+msgid "djangotainer on GitHub"
+msgstr "djangotainer na GitHub-u"
+
+#: apps/users/admin.py:34
+msgid "Personal info"
+msgstr "Lični podaci"
+
+#: apps/users/admin.py:40
+msgid "Permissions"
+msgstr "Permisije"
+
+#: apps/users/admin.py:47
+msgid "Important dates"
+msgstr "Važni datumi"
+
+#: apps/users/models.py:35
+msgid "User"
+msgstr "Korisnik"
+
+#: apps/users/models.py:36
+msgid "Users"
+msgstr "Korisnici"
+
+#: {{ project_name }}/settings/common.py:78
+msgid "English"
+msgstr "Engleski"
+
+#: {{ project_name }}/settings/common.py:79
+msgid "Serbian (Latin)"
+msgstr "Srpski (Latinica)"
+
+#: templates/admin/base_site.html:11
+msgid "Breadcrumbs"
+msgstr ""
+
+#: templates/admin/base_site.html:14
+msgid "Home"
+msgstr "Početna"
