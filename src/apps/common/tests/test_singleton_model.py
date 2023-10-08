@@ -13,7 +13,10 @@ class TestSingletonModel(TestCase):
         (module "migrations").
         """
 
-        name = models.CharField(max_length=100, default="")
+        name = models.CharField(
+            max_length=100,
+            default=""
+        )
 
         class Meta:
             app_label = "common"
