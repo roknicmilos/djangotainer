@@ -27,7 +27,7 @@ run_server() {
     python3 manage.py runserver 0.0.0.0:8000
   else
     printc "Starting Gunicorn server...\n" "info"
-    gunicorn meme_wars.wsgi --bind 0.0.0.0:8000
+    gunicorn {{ project_name }}.wsgi --bind 0.0.0.0:8000
   fi
 }
 

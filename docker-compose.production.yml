@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+
+  django:
+    container_name: {{ project_name }}-django
+    build:
+      target: production
+    depends_on:
+      - postgres

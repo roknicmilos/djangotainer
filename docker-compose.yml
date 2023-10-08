@@ -7,6 +7,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+      target: development
     env_file:
       - .env
     ports:
@@ -26,7 +27,7 @@ services:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_DB=${DB_NAME}
     volumes:
-      - memewars-postgres-data:/var/lib/postgresql/data
+      - {{ project_name }}-postgres-data:/var/lib/postgresql/data
 
 volumes:
-  memewars-postgres-data:
+  {{ project_name }}-postgres-data:
