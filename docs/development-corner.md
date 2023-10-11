@@ -1,6 +1,6 @@
 # Development corner
 
-This project  includes a collection of handy scripts and Python
+This project includes a collection of handy scripts and Python
 packages that streamline and enhance the development process.
 The details and usage instructions for these scripts and Python
 packages are described in the sections below.
@@ -51,6 +51,10 @@ Run the script:
   [isort](https://pycqa.github.io/isort/), and throws an error if
   there are any issues in the code found by these tools.
   Check `src/pyproject.toml` for the Flake8 and isort configuration.
+
+- ### `fix`
+
+  Runs [isort](https://pycqa.github.io/isort/) on the entire codebase and fixes issues with imports.
 
 ## Testing
 
