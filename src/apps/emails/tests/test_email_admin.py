@@ -2,6 +2,7 @@ from unittest.mock import patch
 
 from django.contrib.admin.sites import site as admin_site
 from django.contrib.auth import get_user_model
+from django.contrib.messages import constants as messages_constants
 from faker import Faker
 
 from apps.common.tests import TestCase
@@ -12,6 +13,7 @@ from apps.emails.tests.factories import EmailFactory
 
 
 class TestEmailAdmin(TestCase):
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -65,3 +67,39 @@ class TestEmailAdmin(TestCase):
         href = get_model_admin_change_details_url(obj=user)
         expected_recipient_user = f'<a href="{href}">{email_address}</a>'
         self.assertEqual(recipient_user, expected_recipient_user)
+
+    @patch.object(Email, "send")
+    def test_should_send_5_emails_and_print_success_message(self, mock_send):
+        emails_count = 5
+        EmailFactory.create_batch(size=emails_count)
+        queryset = Email.objects.all()
+        self.assertEqual(queryset.count(), emails_count)
+        request = self.get_request_example()
+        self.email_admin.send_emails(request=request, queryset=queryset)
+        self.assertEqual(mock_send.call_count, emails_count)
+
+        self.assertMessages(
+            request=request,
+            message=f"Successfully sent {emails_count} emails.",
+            level=messages_constants.SUCCESS
+        )
+
+    @patch.object(Email, "send")
+    def test_should_not_send_more_than_5_emails_and_should_print_error_message(self, mock_send):
+        emails_count = 6
+        EmailFactory.create_batch(size=emails_count)
+        queryset = Email.objects.all()
+        self.assertEqual(queryset.count(), emails_count)
+        request = self.get_request_example()
+        self.email_admin.send_emails(request=request, queryset=queryset)
+        self.assertEqual(mock_send.call_count, 0)
+
+        expected_message = (
+            "You can select a maximum of 5 emails to send at once. "
+            "Please reduce the number of selected emails and try again."
+        )
+        self.assertMessages(
+            request=request,
+            message=expected_message,
+            level=messages_constants.ERROR
+        )
