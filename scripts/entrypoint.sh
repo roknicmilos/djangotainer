@@ -41,6 +41,7 @@ fail_isort() {
 START_ARG="start"
 TEST_ARG="test"
 CHECK_ARG="check"
+FIX_ARG="fix"
 TEST_COVERAGE_PERCENTAGE=${TEST_COVERAGE_PERCENTAGE:-100}
 
 #########################################################################
@@ -59,8 +60,12 @@ elif [ "$1" = "$CHECK_ARG" ]; then
   printc "[flake8] Checking linting issues...\n" "info"
   flake8 --toml-config=pyproject.toml .
 
-  printc "[isort] Checking issues with import...\n" "info"
+  printc "[isort] Checking issues with imports...\n" "info"
   isort --check . && printc "No issues with imports.\n" "success" || fail_isort
+
+elif [ "$1" = "$FIX_ARG" ]; then
+  printc "[isort] Fixing issues with imports...\n" "info"
+  isort .
 
 else
   printc "Unknown argument: \"$1\" \n" "danger"
