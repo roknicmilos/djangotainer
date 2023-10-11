@@ -19,6 +19,7 @@ init_django_project() {
   fi
   python3 manage.py migrate
   python3 manage.py createsuperuser --noinput || true
+  python3 manage.py compilemessages
 }
 
 run_server() {
