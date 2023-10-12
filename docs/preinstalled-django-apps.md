@@ -11,12 +11,15 @@ that is quite common across majority of Django projects.
 
 - models: `BaseModel` and `SingletonModel`
     - comes with `created` and `modified` fields, and `update` method
-- management command: `load_data`
+- `loaddata` management command
     - an extension of `loaddata` management command that
       already comes with standard Django project
     - this extension allows defining `FIXTURES` collection
       (`list` or `tuple`) in project `settings` that will be used to
       load the fixtures in a specific order defined by that collection
+- `makemessages` management command
+    - an extension of `makemessages` management command that
+      prevents fuzzy messages from being generated
 - custom model admin class (mixin)
     - easily separate fields (and fieldsets) for "add" and "change"
       model admin form

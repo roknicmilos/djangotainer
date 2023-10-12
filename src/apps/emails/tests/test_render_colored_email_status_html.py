@@ -12,7 +12,7 @@ class TestRenderColoredEmailStatusHTML(TestCase):
         cls.email = EmailFactory()
 
     def test_should_render_colored_email_pending_status_html(self):
-        self.assertEqual(self.email.status, Email.Statuses.PENDING.value)
+        self.email.update(status=Email.Statuses.PENDING.value)
         self.assertEqualColoredStatusHTML(text_color="black", background_color="#e0e0e0")
 
     def test_should_render_colored_email_success_status_html(self):
