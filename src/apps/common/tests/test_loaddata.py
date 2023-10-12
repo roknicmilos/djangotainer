@@ -5,7 +5,7 @@ from django.core.management import BaseCommand, call_command
 from django.db import models
 from django.test import override_settings
 
-from apps.common.management.commands.load_data import Command as LoadDataCommand
+from apps.common.management.commands.loaddata import Command as LoadDataCommand
 from apps.common.models import BaseModel
 from apps.common.tests import TestCase
 
@@ -58,4 +58,4 @@ class TestLoadData(TestCase):
     @override_settings(FIXTURES=("example",))
     def test_should_load_fixtures(self):
         prepared_argv = LoadDataCommand.prepare_argv(argv=[])
-        call_command("load_data", *prepared_argv)
+        call_command("loaddata", *prepared_argv)
