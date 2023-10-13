@@ -18,6 +18,12 @@
       "labels": [
         "bugfix"
       ]
+    },
+    {
+      "title": "## 📦 Dependencies",
+      "labels": [
+        "dependencies"
+      ]
     }
   ],
   "ignore_labels": [],
