@@ -32,7 +32,7 @@ create_project() {
   printc "Creating new Django project from \"djangotainer\" template \n" "info"
   django-admin startproject \
   --template=https://github.com/roknicmilos/djangotainer/archive/main.zip \
-  --name=pyproject.toml,docker-compose.yml,example.env \
+  --name=pyproject.toml,docker-compose.yml,docker-compose.production.yml,entrypoint.sh,django.po,example.env \
   test_djangotainer ./test_djangotainer
 
   printc "Deactivating Python virtual environment (venv) \n" "info"

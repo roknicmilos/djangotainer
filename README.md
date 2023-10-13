@@ -66,10 +66,10 @@ template.
 5. Create new Django project from "djangotainer" project template:
 
    ```shell
-    django-admin startproject \
-    --template=https://github.com/roknicmilos/djangotainer/archive/main.zip \
-    --name=pyproject.toml,docker-compose.yml,example.env \
-    test_djangotainer ./test_djangotainer
+      django-admin startproject \
+      --template=https://github.com/roknicmilos/djangotainer/archive/main.zip \
+      --name=pyproject.toml,docker-compose.yml,docker-compose.production.yml,entrypoint.sh,django.po,example.env \
+      test_djangotainer ./test_djangotainer
    ```
 
 6. Deactivate and remove Python virtual environment:
