@@ -69,7 +69,7 @@ template.
       django-admin startproject \
       --template=https://github.com/roknicmilos/djangotainer/archive/main.zip \
       --name=pyproject.toml,docker-compose.yml,docker-compose.production.yml,entrypoint.sh,django.po,example.env \
-      test_djangotainer ./test_djangotainer
+      [my_project] ./[my_project]
    ```
 
 6. Deactivate and remove Python virtual environment:
