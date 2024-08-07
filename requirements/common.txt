@@ -1,4 +1,4 @@
-Django==5.0.1
+Django==5.0.8
 asgiref==3.8.1
 django-extensions==3.2.3
 psycopg2==2.9.9
