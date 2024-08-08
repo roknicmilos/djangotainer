@@ -1,6 +1,6 @@
 -r common.txt
 Flake8-pyproject==1.2.3
-PyYAML==6.0.1
+PyYAML==6.0.2
 factory-boy==3.3.0
 flake8-quotes==3.4.0
 flake8==7.1.1
